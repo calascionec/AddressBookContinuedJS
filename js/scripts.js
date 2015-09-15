@@ -21,8 +21,8 @@ $(document).ready(function(){
         $("ul#contacts").append("<li><span class='contact'>" +
           newContact.fullName() + "</span></li>");
 
-        $(".contact").last().click(function(){
-            $("#show-contact").show();
+        $(".contact").last().hover(function(){
+            $("#show-contact").toggle();
             $("#show-contact h2").text(newContact.firstName);
             $(".first-name").text(newContact.firstName);
             $(".last-name").text(newContact.lastName);
@@ -32,9 +32,25 @@ $(document).ready(function(){
             });
         });
 
+        $(".new-address").not(".new-address:first-child").remove();
+
         resetFields();
 
     });
+
+    $("input").keypress(function() {
+
+        $("#new-contact").circulate({
+            speed: 350,                  // Speed of each quarter segment of animation, 1000 = 1 second
+            height: 350,                 // Distance vertically to travel
+            width: 600,                  // Distance horizontally to travel
+            sizeAdjustment: 30,         // Percentage to grow or shrink
+            loop: true,                 // Circulate continuously
+            zIndexValues: [1, 1, 1, 1]   // Sets z-index value at each stop of animation
+
+        });
+    });
+
 });
 
 
